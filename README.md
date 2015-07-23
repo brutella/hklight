@@ -21,3 +21,6 @@ Build with `go build hklightd.go`.
 
 Execute the executable `./hklightd` or run with `go run hklightd.go`.
 
+# License
+
+hklight is available under a non-commercial license. See the LICENSE file for more info.
