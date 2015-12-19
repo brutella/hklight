@@ -30,7 +30,7 @@ func main() {
 		}
 	})
 
-	t, err := hap.NewIPTransport("32191123", light.Accessory)
+	t, err := hap.NewIPTransport(hap.Config{Pin: "32191123"}, light.Accessory)
 	if err != nil {
 		log.Fatal(err)
 	}
