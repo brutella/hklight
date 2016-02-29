@@ -34,6 +34,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
+	hap.OnTermination(func() {
+		t.Stop()
+	})
 
 	t.Start()
 }
