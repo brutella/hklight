@@ -1,10 +1,9 @@
 package main
 
 import (
+	"github.com/brutella/hc/accessory"
 	"github.com/brutella/hc/hap"
-	"github.com/brutella/hc/model"
-	"github.com/brutella/hc/model/accessory"
-	"log"
+	"github.com/brutella/log"
 )
 
 func turnLightOn() {
@@ -16,13 +15,17 @@ func turnLightOff() {
 }
 
 func main() {
-	info := model.Info{
+	log.Verbose = true
+	log.Info = true
+
+	info := accessory.Info{
 		Name:         "Personal Light Bulb",
 		Manufacturer: "Matthias",
 	}
 
-	light := accessory.NewLightBulb(info)
-	light.OnStateChanged(func(on bool) {
+	acc := accessory.NewLightbulb(info)
+
+	acc.Lightbulb.On.OnValueRemoteUpdate(func(on bool) {
 		if on == true {
 			turnLightOn()
 		} else {
@@ -30,11 +33,11 @@ func main() {
 		}
 	})
 
-	t, err := hap.NewIPTransport(hap.Config{Pin: "32191123"}, light.Accessory)
+	t, err := hap.NewIPTransport(hap.Config{Pin: "32191123"}, acc.Accessory)
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	hap.OnTermination(func() {
 		t.Stop()
 	})
