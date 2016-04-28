@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
-	"github.com/brutella/hc/hap"
 	"github.com/brutella/log"
 )
 
@@ -33,12 +33,12 @@ func main() {
 		}
 	})
 
-	t, err := hap.NewIPTransport(hap.Config{Pin: "32191123"}, acc.Accessory)
+	t, err := hc.NewIPTransport(hc.Config{Pin: "32191123"}, acc.Accessory)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	hap.OnTermination(func() {
+	hc.OnTermination(func() {
 		t.Stop()
 	})
 
