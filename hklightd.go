@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
-	"github.com/brutella/log"
+	"log"
 )
 
 func turnLightOn() {
@@ -15,9 +15,6 @@ func turnLightOff() {
 }
 
 func main() {
-	log.Verbose = true
-	log.Info = true
-
 	info := accessory.Info{
 		Name:         "Personal Light Bulb",
 		Manufacturer: "Matthias",
