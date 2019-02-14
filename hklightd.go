@@ -36,7 +36,7 @@ func main() {
 	}
 
 	hc.OnTermination(func() {
-		t.Stop()
+		<-t.Stop()
 	})
 
 	t.Start()
